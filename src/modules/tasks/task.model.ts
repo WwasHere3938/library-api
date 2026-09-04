@@ -9,15 +9,12 @@ export interface Task {
     updatedAt: Date;
 }
 
-/** Datos que el cliente envía para crear una tarea. */
-export interface CreateTaskDTO {
-    title: string;
-    description: string;
-    isDone?: boolean;
-}
-
-/** Datos que el cliente puede enviar para actualizar una tarea (parciales). */
-export interface UpdateTaskDTO {
+/**
+ * Datos que el cliente puede enviar sobre una tarea.
+ * Todos los campos son opcionales; el servicio valida qué es
+ * obligatorio según la operación (crear vs. actualizar).
+ */
+export interface TaskDTO {
     title?: string;
     description?: string;
     isDone?: boolean;

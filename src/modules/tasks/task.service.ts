@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { Task, CreateTaskDTO, UpdateTaskDTO } from "./task.model";
+import { Task, TaskDTO } from "./task.model";
 import { TaskRepository } from "./task.repository";
 import { BadRequestError, NotFoundError } from "../../shared/errors/AppError";
 
@@ -7,7 +7,7 @@ export class TaskService {
 
     private readonly taskRepository = new TaskRepository();
 
-    async create(data: CreateTaskDTO): Promise<Task> {
+    async create(data: TaskDTO): Promise<Task> {
         const title = this.requireString(data?.title, "title");
         const description = this.requireString(data?.description, "description");
 
@@ -33,7 +33,7 @@ export class TaskService {
         return task;
     }
 
-    async update(id: string, data: UpdateTaskDTO): Promise<Task> {
+    async update(id: string, data: TaskDTO): Promise<Task> {
         const objectId = this.toObjectId(id);
         const changes: Partial<Task> = {};
 
